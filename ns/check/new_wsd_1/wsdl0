@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="new_wsd" targetNamespace="http://SAG-BYMBFS3/check:new_wsd" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soapjms="http://www.w3.org/2010/soapjms/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://SAG-BYMBFS3/check:new_wsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://SAG-BYMBFS3/check:new_wsd" xmlns:tns="http://SAG-BYMBFS3/check:new_wsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+          <xsd:element name="dataFlow" type="tns:dataFlow"/>
+          <xsd:element name="dataFlowResponse" type="tns:dataFlowResponse"/>
+          <xsd:complexType name="dataFlow">
+            <xsd:sequence>
+              <xsd:element name="n1" nillable="true" type="xsd:string"/>
+              <xsd:element name="n2" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="dataFlowResponse">
+            <xsd:sequence>
+              <xsd:element name="c" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        	</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="new_wsd_PortType_dataFlow">
+    <wsdl:part name="parameters" element="tns:dataFlow">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="new_wsd_PortType_dataFlowResponse">
+    <wsdl:part name="parameters" element="tns:dataFlowResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="new_wsd_PortType">
+    <wsdl:operation name="dataFlow">
+      <wsdl:input message="tns:new_wsd_PortType_dataFlow">
+    </wsdl:input>
+      <wsdl:output message="tns:new_wsd_PortType_dataFlowResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="check_new_wsd_Binder" type="tns:new_wsd_PortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="dataFlow">
+      <soap:operation soapAction="check_new_wsd_Binder_dataFlow" style="document"/>
+      <wsdl:input>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="check.new_wsd">
+    <wsdl:port name="check_new_wsd_Port" binding="tns:check_new_wsd_Binder">
+      <soap:address location="http://SAG-BYMBFS3:8888/ws/check:new_wsd/check_new_wsd_Port"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
